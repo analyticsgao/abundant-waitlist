@@ -174,3 +174,12 @@ form button:hover {
     color: black;
     text-decoration: underline;
 }
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #FFD9B5, #f0f4f8);
+    color: #111;
+    margin: 0;
+    padding-top: 70px;
+}
+
