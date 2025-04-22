@@ -4,39 +4,30 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Abundant Science – Join the Waitlist</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
   <style>
-    :root {
-      --accent: #ff6b00;
-      --background: #f8f9fa;
-      --text: #111;
-    }
-
     body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Helvetica Neue', sans-serif;
-      background: var(--background);
-      color: var(--text);
+      font-family: Helvetica, sans-serif;
+      background-color: #f8f9fa;
+      color: #111;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       min-height: 100vh;
-      text-align: center;
       padding: 2rem;
+      text-align: center;
     }
 
     h1 {
-      font-size: 2.75rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
     }
 
     p {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       max-width: 450px;
       margin-bottom: 2rem;
-      line-height: 1.6;
     }
 
     form {
@@ -44,52 +35,87 @@
       flex-direction: column;
       gap: 1rem;
       width: 100%;
-      max-width: 350px;
+      max-width: 320px;
     }
 
     input[type="email"] {
-      padding: 0.75rem 1rem;
+      padding: 0.75rem;
       font-size: 1rem;
-      border-radius: 6px;
+      border-radius: 5px;
       border: 1px solid #ccc;
     }
 
     button {
-      padding: 0.75rem 1rem;
+      padding: 0.75rem;
       font-size: 1rem;
       font-weight: bold;
-      background-color: var(--accent);
-      color: #fff;
+      background-color: black;
+      color: white;
       border: none;
-      border-radius: 6px;
+      border-radius: 5px;
       cursor: pointer;
-      transition: background 0.2s ease;
+      transition: background-color 0.2s ease;
     }
 
     button:hover {
-      background-color: #e65a00;
+      background-color: #333;
     }
 
-    .footer {
-      margin-top: 3rem;
-      font-size: 0.85rem;
-      color: #888;
+    .success {
+      color: green;
+      margin-top: 1rem;
+    }
+
+    .error {
+      color: red;
+      margin-top: 1rem;
     }
   </style>
 </head>
 <body>
 
   <h1>Abundant Science</h1>
-  <p>We’re on a mission to make preventive health easier and accessible through better rapid testing. Sign up to try our first kits before anyone else.</p>
+  <p>We’re building the future of rapid health testing. Join the waitlist to be the first to try our kits.</p>
 
-  <form action="https://formspree.io/f/your-form-id" method="POST">
-    <input type="email" name="email" placeholder="Enter your email" required />
+  <form id="waitlist-form">
+    <input type="email" id="email" placeholder="Enter your email" required />
     <button type="submit">Join the Waitlist</button>
   </form>
 
-  <div class="footer">
-    © 2025 Abundant Science. All rights reserved.
-  </div>
+  <div id="message"></div>
+
+  <script>
+    const SUPABASE_URL = "https://jicytgdlbevccejowlnf.supabase.co";
+    const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImppY3l0Z2RsYmV2Y2Nlam93bG5mIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDUzNDQzNTYsImV4cCI6MjA2MDkyMDM1Nn0.DRfZefUPOLjhdxYudhvQKGePr6ex-Xf3JBkedbF7_OY";
+
+    const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+    document.getElementById("waitlist-form").addEventListener("submit", async function (e) {
+      e.preventDefault();
+      const email = document.getElementById("email").value.trim();
+      const msg = document.getElementById("message");
+      msg.textContent = ""; // Clear previous messages
+
+      if (!email || !email.includes("@")) {
+        msg.textContent = "Please enter a valid email.";
+        msg.className = "error";
+        return;
+      }
+
+      const { data, error } = await supabase
+        .from("waitlist")
+        .insert([{ email }]);
+
+      if (error) {
+        msg.textContent = "❌ Error: " + error.message;
+        msg.className = "error";
+      } else {
+        msg.textContent = "✅ You're on the list!";
+        msg.className = "success";
+        document.getElementById("waitlist-form").reset();
+      }
+    });
+  </script>
 
 </body>
 </html>
