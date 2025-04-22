@@ -85,45 +85,52 @@
   <div id="message"></div>
 
   <script>
-  window.addEventListener("DOMContentLoaded", function () {
-    const SUPABASE_URL = "https://jicytgdlbevccejowlnf.supabase.co";
-    const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImppY3l0Z2RsYmV2Y2Nlam93bG5mIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDUzNDQzNTYsImV4cCI6MjA2MDkyMDM1Nn0.DRfZefUPOLjhdxYudhvQKGePr6ex-Xf3JBkedbF7_OY";
+    window.addEventListener("DOMContentLoaded", function () {
+      const SUPABASE_URL = "https://jicytgdlbevccejowlnf.supabase.co";
+      const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImppY3l0Z2RsYmV2Y2Nlam93bG5mIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDUzNDQzNTYsImV4cCI6MjA2MDkyMDM1Nn0.DRfZefUPOLjhdxYudhvQKGePr6ex-Xf3JBkedbF7_OY";
 
-    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-    console.log("Supabase connected:", supabase);
+      const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+      console.log("✅ Supabase client initialized");
 
-    document.getElementById("waitlist-form").addEventListener("submit", async function (e) {
-      e.preventDefault();
-      const email = document.getElementById("email").value.trim();
-      const msg = document.getElementById("message");
-      msg.textContent = "";
+      document.getElementById("waitlist-form").addEventListener("submit", async function (e) {
+        e.preventDefault();
 
-      console.log("Submitting email:", email);
+        const email = document.getElementById("email").value.trim();
+        const msg = document.getElementById("message");
+        msg.textContent = "";
+        msg.className = "";
 
-      if (!email || !email.includes("@")) {
-        msg.textContent = "Please enter a valid email.";
-        msg.className = "error";
-        return;
-      }
+        console.log("📨 Attempting to submit email:", email);
 
-      const { data, error } = await supabase
-        .from("waitlist")
-        .insert([{ email }]);
+        if (!email || !email.includes("@")) {
+          msg.textContent = "Please enter a valid email.";
+          msg.className = "error";
+          return;
+        }
 
-      if (error) {
-        console.error("Supabase error:", error);
-        msg.textContent = "❌ Error: " + error.message;
-        msg.className = "error";
-      } else {
-        console.log("Supabase response:", data);
-        msg.textContent = "✅ You're on the list!";
-        msg.className = "success";
-        document.getElementById("waitlist-form").reset();
-      }
+        try {
+          const { data, error } = await supabase
+            .from("waitlist")
+            .insert([{ email }]);
+
+          if (error) {
+            console.error("❌ Supabase error:", error);
+            msg.textContent = "❌ Error: " + error.message;
+            msg.className = "error";
+          } else {
+            console.log("✅ Inserted into Supabase:", data);
+            msg.textContent = "✅ You're on the list!";
+            msg.className = "success";
+            document.getElementById("waitlist-form").reset();
+          }
+        } catch (err) {
+          console.error("❗ Unexpected error:", err);
+          msg.textContent = "❌ Something went wrong.";
+          msg.className = "error";
+        }
+      });
     });
-  });
-</script>
-
+  </script>
 
 </body>
 </html>
