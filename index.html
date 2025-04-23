@@ -11,9 +11,10 @@
 
     <!-- Load your stylesheet -->
     <link rel="stylesheet" href="styles.css" />
+
+    <!-- Load Supabase client -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.5/dist/umd/supabase.min.js"></script>
 </head>
-
-
 
 <body>
 
@@ -30,16 +31,12 @@
 
     <!-- Hero / Form Section -->
     <div class="container">
-        <h1>Abundant Science
-            <br>
+        <h1>Abundant Science<br>
             Health testing <em>without</em> the lab.
         </h1>
         <br>
-
-        <p>We’re building the future of rapid health testing.
-            <br>
+        <p>We’re building the future of rapid health testing.<br>
             Join the waitlist to get early access to our tests.
-
         </p>
 
         <form id="waitlist-form">
@@ -50,20 +47,12 @@
         <div id="message"></div>
     </div>
 
-    <!-- About Us Section -->
-    <!-- <section id="about">
-        <p>We’re on a mission to make preventive health testing more accessible. Our rapid test kits are designed to
-            help you take control of your health from home — faster, easier, and more affordably than ever before.</p>
-    </section> -->
-
-
-
     <!-- Supabase Script -->
     <script>
         window.addEventListener("DOMContentLoaded", function () {
             const SUPABASE_URL = "https://jicytgdlbevccejowlnf.supabase.co";
             const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImppY3l0Z2RsYmV2Y2Nlam93bG5mIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDUzNDQzNTYsImV4cCI6MjA2MDkyMDM1Nn0.DRfZefUPOLjhdxYudhvQKGePr6ex-Xf3JBkedbF7_OY";
-            const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+            const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
             document.getElementById("waitlist-form").addEventListener("submit", async function (e) {
                 e.preventDefault();
@@ -100,27 +89,18 @@
         });
     </script>
 
-
-
     <section class="biomarker-section">
-        <!-- <h2> Early access to at-home rapid tests for 15+ biomarkers.</h2> -->
         <p>
             <br>
             Coming Soon - We're making lab-quality testing available at home — starting with:
             Vitamin D, Ferritin, FSH, LH, Testosterone, Progesterone, Estradiol, Cortisol, TSH, T3, T4,
             CRP, HbA1c, UTI, Multi-Drug Screening
-
-            <br>
-            <br>
-
+            <br><br>
             <br>Join our Discord community <a href="https://discord.gg/abundant.science" target="_blank"
                 rel="noopener noreferrer">here</a>
             <br>Follow Us on <a href="https://www.tiktok.com/@abundant.science" target="_blank"
                 rel="noopener noreferrer">TikTok</a>
-
         </p>
-
-
     </section>
 
     <footer class="site-footer">
