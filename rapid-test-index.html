@@ -121,9 +121,13 @@
                 <div class="result">
                     <h3>${row.name}</h3>
                     <p>${row.description}</p>
-                    <p class="${row.available ? 'available' : 'unavailable'}">
+                    <div class="card-footer">
+                        ${row.url ? `<a href="${row.url}" target="_blank" class="learn-more-button">Learn more</a>` : ''}
+                        <p class="${row.available ? 'available' : 'unavailable'}">
                         ${row.available ? '✅ Available now' : '🔒 Coming soon'}
+
                     </p>
+                    </div>
                 </div>
             `).join('');
     }
