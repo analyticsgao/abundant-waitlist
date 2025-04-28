@@ -3,14 +3,6 @@ html {
     scroll-behavior: smooth;
 }
 
-body {
-    font-family: Helvetica, sans-serif;
-    background-color: #f8f9fa;
-    color: #111;
-    margin: 0;
-    padding-top: 70px;
-    /* space for navbar */
-}
 
 /* === Navigation Bar === */
 nav {
@@ -22,11 +14,17 @@ nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0.75rem 2rem;
+    padding: 0.75rem 1rem;
     z-index: 999;
     box-sizing: border-box;
 }
 
+/* Mobile-specific: push nav links to right */
+@media (max-width: 768px) {
+    nav .nav-links {
+        margin-left: auto;
+    }
+}
 
 nav .logo-container {
     display: flex;
@@ -38,11 +36,19 @@ nav img {
     max-height: 35px;
 }
 
+nav .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
 nav .nav-links a {
-    margin-left: 1.25rem;
+    margin-left: 1rem;
     text-decoration: none;
-    color: #333;
+    color: #222;
+    font-size: 0.95rem;
     font-weight: 500;
+    white-space: nowrap;
 }
 
 nav .nav-links a:hover {
@@ -51,7 +57,6 @@ nav .nav-links a:hover {
 
 /* === Main Container === */
 .container {
-
 
     max-width: 480px;
     margin: 2rem auto;
@@ -137,6 +142,16 @@ form button:hover {
     color: #555;
 }
 
+/* Global helper text style */
+.form-helper-text {
+    font-size: 0.9rem;
+    /* smaller than normal body text */
+    color: #555;
+    /* medium grey, softer than black */
+    margin-top: 0.5rem;
+    /* little breathing room */
+}
+
 .biomarker-section {
     max-width: 700px;
     margin: 3rem auto;
@@ -183,3 +198,121 @@ body {
     padding-top: 70px;
 }
 
+
+.field-group {
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    /* increased gap for cleaner separation */
+}
+
+
+
+/* === SIGNUP PAGE ONLY === */
+.signup-page {
+    padding: 2rem;
+    max-width: 600px;
+    margin: auto;
+}
+
+.signup-page input,
+.signup-page button {
+
+    width: 300px;
+    padding: 0.75rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.signup-page button {
+    background-color: #000000;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.signup-page #message {
+    margin-top: 1rem;
+}
+
+/* Global styles for input, button, select */
+input,
+button,
+select {
+    width: 300px;
+    padding: 0.75rem;
+    font-size: 1rem;
+    font-family: inherit;
+    /* Inherit the 'Inter' font */
+    box-sizing: border-box;
+    /* Prevent weird width issues */
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+
+}
+
+/* === CSS Rapid Test Index Page Search Result Cards Only === */
+
+/* === Test Checker Tool Container Only === */
+.test-checker-container {
+    max-width: 900px;
+}
+
+.result {
+    background-color: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+    max-width: 700px;
+    /* wider card */
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    text-align: left;
+}
+
+
+/* Slight lift on hover */
+.result:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+    transform: translateY(-5px);
+}
+
+/* Heading inside card */
+.result h3 {
+    font-size: 1.1rem;
+    /* smaller and tighter */
+    margin-bottom: 0.5rem;
+    color: #222;
+}
+
+/* Paragraph inside card */
+.result p {
+    font-size: 0.95rem;
+    /* a bit smaller text */
+    color: #555;
+    margin: 0.5rem 0;
+    line-height: 1.5;
+}
+
+/* Available tag */
+.available {
+    color: #2e7d32;
+    /* deep green */
+    font-weight: 600;
+}
+
+/* Unavailable tag */
+.unavailable {
+    color: #999;
+    font-weight: 600;
+}
