@@ -134,19 +134,6 @@ body {
 /* Global styles for input, button, select */
 input,
 button,
-select {
-    width: 300px;
-    padding: 0.75rem;
-    font-size: 1rem;
-    font-family: inherit;
-    /* Inherit the 'Inter' font */
-    box-sizing: border-box;
-    /* Prevent weird width issues */
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-
-}
 
 /* Separate clean styling for select */
 select {
