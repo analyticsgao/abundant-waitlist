@@ -50,16 +50,33 @@
         <div class="field-group">
             <input type="text" id="search" class="styled-field" placeholder="Biomarker, condition, topic etc." />
             <select id="categoryFilter" class="styled-field">
-                <option value="">All Categories</option>
-                <option value="Hormone">Hormone</option>
-                <option value="Metabolic">Metabolic</option>
+                <option value="">Filter by Health Category</option>
+                <option value="General Wellness">General Wellness</option>
                 <option value="Fertility">Fertility</option>
-                <option value="Viral">Viral</option>
+                <option value="Sexual Health">Sexual Health</option>
+                <option value="Heart Health">Heart Health</option>
+                <option value="Gastrointestinal">Gastrointestinal</option>
+                <option value="Infections">Infections</option>
+                <option value="Drug Screening">Drug Screening</option>
             </select>
+            <!-- <select id="categoryFilter" class="styled-field">
+                <option value="">Test Type</option>
+                <option value="Hormone">Hormone</option>
+                <option value="Vitamin">Vitamin</option>
+                <option value="Metabolic">Metabolic</option>
+                <option value="Infection (Viral)">Infection (Viral)</option>
+                <option value="Infection (Bacterial)">Infection (Bacterial)</option>
+                <option value="Cancer Marker">Cancer Marker</option>
+                <option value="Inflammatory Marker">Inflammatory Marker</option>
+
+            </select> -->
+
+
         </div>
 
         <div id="results"></div>
 </div>
+
 
 <!-- JS Search Logic -->
 <script>
