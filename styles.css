@@ -1,10 +1,15 @@
+/* ===== BASE STYLES ===== */
+
 /* === Global Styles === */
 html {
     scroll-behavior: smooth;
 }
 
+/* Global paragraph font style */
 
-/* === Navigation Bar === */
+
+
+/* === Global Navigation Bar === */
 nav {
     position: fixed;
     top: 0;
@@ -58,15 +63,14 @@ nav .nav-links a:hover {
 /* === Main Container === */
 .container {
 
-    max-width: 480px;
+    max-width: 650px;
     margin: 2rem auto;
     padding: 2rem 1rem;
     text-align: center;
-
 }
 
 
-
+/* === Hero Section === */
 .logo {
     max-width: 80px;
     margin-bottom: 1rem;
@@ -83,94 +87,22 @@ p {
     color: #444;
 }
 
-/* === Form === */
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    align-items: center;
-}
-
-form input[type="email"],
-form button {
-    width: 300px;
-    padding: 0.75rem;
-    font-size: 1rem;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-}
-
-form button {
-    background-color: black;
-    color: white;
-    font-weight: bold;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-}
-
-form button:hover {
-    background-color: #333;
-}
-
-
-.success {
-    color: green;
-    margin-top: 1rem;
-}
-
-.error {
-    color: red;
-    margin-top: 1rem;
-}
-
-/* === About Section === */
-#about {
-    max-width: 600px;
-    margin: 4rem auto;
-    padding: 0 1.5rem;
-    text-align: center;
-}
-
-#about h2 {
-    font-size: 1.75rem;
-    margin-bottom: 1rem;
-}
-
-#about p {
+p.italic {
     font-size: 1.05rem;
-    color: #555;
+    font-style: italic;
+    margin-bottom: 2rem;
+    color: #444;
 }
 
-/* Global helper text style */
-.form-helper-text {
-    font-size: 0.9rem;
-    /* smaller than normal body text */
-    color: #555;
-    /* medium grey, softer than black */
-    margin-top: 0.5rem;
-    /* little breathing room */
-}
-
-.biomarker-section {
-    max-width: 700px;
-    margin: 3rem auto;
-    padding: 0 1.5rem;
-    text-align: center;
-}
-
-.biomarker-section h2 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-}
-
-.biomarker-section p {
+p.light {
     font-size: 1.05rem;
-    margin-bottom: 1rem;
     color: #888;
-    /* light grey */
+    margin-bottom: 2rem;
 }
+
+
+
+/* === Global Footer Bar === */
 
 .site-footer {
     text-align: center;
@@ -199,20 +131,122 @@ body {
     padding-top: 70px;
 }
 
+/* Global styles for input, button, select */
+input,
+button,
+select {
+    width: 300px;
+    padding: 0.75rem;
+    font-size: 1rem;
+    font-family: inherit;
+    /* Inherit the 'Inter' font */
+    box-sizing: border-box;
+    /* Prevent weird width issues */
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
 
-.field-group {
-    width: 100%;
-    max-width: 700px;
-    margin: 0 auto 2rem;
+}
+
+/* ===== COMPONENTS ===== */
+
+/* === Rapid Test Form === */
+form {
     display: flex;
     flex-direction: column;
-    gap: 0.3rem;
-    /* increased gap for cleaner separation */
+    gap: 1rem;
+    align-items: center;
+}
+
+form input[type="email"],
+
+form button {
+    width: 300px;
+    padding: 0.75rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+form button {
+    background-color: black;
+    color: white;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+form button:hover {
+    background-color: #333;
+}
+
+/* === Result Cards === */
+.success {
+    color: green;
+    margin-top: 1rem;
+}
+
+.error {
+    color: red;
+    margin-top: 1rem;
 }
 
 
 
-/* === SIGNUP PAGE ONLY === */
+/* === Simple Page Section (i.e. About page) === */
+#about {
+    max-width: 600px;
+    margin: 4rem auto;
+    padding: 0 1.5rem;
+    text-align: center;
+}
+
+#about h2 {
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+}
+
+#about p {
+    font-size: 1.05rem;
+    color: #555;
+}
+
+/* Global helper text style */
+.form-helper-text {
+    font-size: 0.9rem;
+    /* smaller than normal body text */
+    color: #555;
+    /* medium grey, softer than black */
+    margin-top: 0.5rem;
+    /* little breathing room */
+}
+
+
+/* === Biomarker Waitlist Page Section (i.e. Vitamin B12 page) === */
+
+.biomarker-section {
+    max-width: 700px;
+    margin: 3rem auto;
+    padding: 0 1.5rem;
+    text-align: center;
+}
+
+.biomarker-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.biomarker-section p {
+    font-size: 1.05rem;
+    margin-bottom: 1rem;
+    color: #888;
+    /* light grey */
+}
+
+
+/* === Rapid Test Index SIGNUP PAGE Format === */
 .signup-page {
     padding: 2rem;
     max-width: 600px;
@@ -242,28 +276,46 @@ body {
     margin-top: 1rem;
 }
 
-/* Global styles for input, button, select */
-input,
-button,
-select {
-    width: 300px;
-    padding: 0.75rem;
-    font-size: 1rem;
-    font-family: inherit;
-    /* Inherit the 'Inter' font */
-    box-sizing: border-box;
-    /* Prevent weird width issues */
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
 
+/* === Rapid Test Index Search Input Format === */
+
+.field-group {
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
 }
 
-/* === CSS Rapid Test Index Page Search Result Cards Only === */
+styled-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto 2rem;
+}
 
-/* === Test Checker Tool Container Only === */
-.test-checker-container {
-    max-width: 900px;
+
+/* === Rapid Test Index Page Search Result Cards Only === */
+
+
+/* === Field Group (Search + Filter) === */
+.field-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+}
+
+/* === Input and Select Styling === */
+.styled-field {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
 }
 
 .result {
@@ -318,21 +370,30 @@ select {
     font-weight: 600;
 }
 
-/* === Additional Minor Styles for Sales Pages === */
-
-/* Make <ul> lists inside sections cleaner and aligned center */
-.biomarker-section ul {
-    list-style: none;
-    padding: 0;
-    margin: 2rem 0 0 0;
-    text-align: center;
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
 }
 
-.biomarker-section ul li {
-    font-size: 1rem;
-    margin-bottom: 1rem;
-    color: #333;
+/* Learn more button at bottom of result card */
+.learn-more-button {
+    color: #701C1C;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
 }
+
+@media (max-width: 480px) {
+    .result {
+        padding: 1rem;
+        /* smaller padding on small screens */
+    }
+}
+
+
+/* === Style Change for Available Tests Pages === */
 
 /* Center and slightly larger Buy Now button */
 .container a button {
@@ -351,7 +412,7 @@ select {
     background-color: #333;
 }
 
-/* === Feature Section Cards === */
+/* === Feature Section Cards on Available Tests === */
 
 .features-section {
     max-width: 700px;
