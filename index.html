@@ -73,7 +73,7 @@
           console.log("📨 Submitting:", email);
           const { data, error } = await client
             .from("waitlist")
-            .insert([{ email }]);
+            .insert([{ email, source_page: "Home Page"}]);
 
           console.log("✅ Response:", data, error);
 
