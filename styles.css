@@ -148,6 +148,26 @@ select {
 
 }
 
+/* Separate clean styling for select */
+select {
+    width: 300px;
+    padding: 0.75rem;
+    font-size: 1rem;
+    font-family: inherit;
+    box-sizing: border-box;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    background-color: white;
+    appearance: none;
+    /* removes weird native styles */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%23333" height="16" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 1rem;
+}
+
 /* ===== COMPONENTS ===== */
 
 /* === Rapid Test Form === */
