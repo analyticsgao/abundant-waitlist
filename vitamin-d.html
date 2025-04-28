@@ -4,21 +4,17 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vitamin D Rapid Test – Abundant Science</title>
+    <title>Vitamin D Rapid Test Kit – Abundant Science</title>
 
     <!-- Load Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
 
-    <!-- Load your stylesheet -->
     <link rel="stylesheet" href="styles.css" />
-
-    <!-- Load Supabase client -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.5/dist/umd/supabase.min.js"></script>
 </head>
 
 <body>
 
-    <!-- Navigation Bar -->
+    <!-- Navigation -->
     <nav>
         <div class="logo-container">
             <a href="index.html"
@@ -32,84 +28,64 @@
         </div>
     </nav>
 
-    <!-- Hero / Form Section -->
-    <div class="container">
+    <!-- Hero Section -->
+    <div class="container" style="margin-top: 2rem;">
+        <h1>Vitamin D Rapid Test</h1>
+        <p>Test your Vitamin D levels in 15-minutes quickly and conveniently from home. Health Canada approved.</p>
 
-        <h1>Get Early Access to At-Home Vitamin D Testing<br></h1>
+        <!-- Image -->
+        <div style="max-width: 700px; margin: 2rem auto;">
+            <img src="VitaminD-image.jpg" alt="Vitamin D Rapid Test Kit"
+                style="width: 75%; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" />
+        </div>
 
-        <br>
+        <a href="https://rapidte.st/products/vitamin-d" target="_blank">
+            <button>Order a Test</button>
+        </a>
 
-        <p>
-            Join the waitlist for one of the first at-home Vitamin D Test Kits available in Canada.<br>
-        </p>
-
-        <form id="waitlist-form">
-            <input type="email" id="email" placeholder="Email" required />
-            <button type="submit">Join Waitlist</button>
-        </form>
-
-        <div id="message"></div>
+        <p style="margin-top: 2rem;">The Vitamin D Rapid Test Kit provides an easy way to assess your Vitamin D
+            (25-hydroxyvitamin D) status using a small blood sample. Results are available within 15 minutes, helping
+            you take proactive steps toward better health.</p>
     </div>
 
-    <!-- Supabase Script -->
-    <script>
-        window.addEventListener("DOMContentLoaded", function () {
-            const SUPABASE_URL = "https://jicytgdlbevccejowlnf.supabase.co";
-            const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImppY3l0Z2RsYmV2Y2Nlam93bG5mIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDUzNDQzNTYsImV4cCI6MjA2MDkyMDM1Nn0.DRfZefUPOLjhdxYudhvQKGePr6ex-Xf3JBkedbF7_OY";
+    <!-- Features and What's Included Sections (Side-by-Side Cards) -->
+    <section class="features-section">
+        <div class="card-grid">
+            <!-- Key Features Card -->
+            <div class="section-card">
+                <h2 style="text-align: center;">Key Features</h2>
+                <ul class="card-list">
+                    <li>Simple finger-prick blood </li>
+                    <li>Results available in 15 minutes</li>
+                    <li>Results: Deficient, Insufficient, Sufficient</li>
+                    <li>Ships across Canada</li>
+                </ul>
+            </div>
 
-            const client = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-
-            document.getElementById("waitlist-form").addEventListener("submit", async function (e) {
-                e.preventDefault();
-
-                const email = document.getElementById("email").value.trim();
-                const msg = document.getElementById("message");
-                msg.textContent = "";
-                msg.className = "";
-
-                if (!email || !email.includes("@")) {
-                    msg.textContent = "Please enter a valid email.";
-                    msg.className = "error";
-                    return;
-                }
-
-                try {
-                    console.log("📨 Submitting:", email);
-                    const { data, error } = await client
-                        .from("waitlist")
-                        .insert([{ email, source_page: "Vitamin D Test" }]);
-
-                    console.log("✅ Response:", data, error);
-
-                    if (error) {
-                        msg.textContent = "❌ Error: " + error.message;
-                        msg.className = "error";
-                    } else {
-                        msg.textContent = "✅ You're on the list!";
-                        msg.className = "success";
-                        document.getElementById("waitlist-form").reset();
-                    }
-                } catch (err) {
-                    console.error("❗ Unexpected error:", err);
-                    msg.textContent = "❌ Something went wrong.";
-                    msg.className = "error";
-                }
-            });
-        });
-    </script>
-
-    <section class="biomarker-section">
-        <p>
-            <br>
-            About Us – Abundant Science provides rapid tests directly to customers and partners with governments,
-            organizations, and healthcare providers to make proactive health testing more accessible across Canada.
-            <br><br>
-            <br>Follow Us on <a href="https://www.tiktok.com/@abundant.science" target="_blank"
-                rel="noopener noreferrer">TikTok</a>
-            <br>Explore Our <a href="https://rapidte.st" target="_blank" rel="noopener noreferrer">Rapid Tests</a>
-        </p>
+            <!-- What's Included Card -->
+            <div class="section-card">
+                <h2 style="text-align: center;">What's Included</h2>
+                <ul class="card-list">
+                    <li>1 Rapid Test Cassette</li>
+                    <li>1 Sterile Lancet</li>
+                    <li>1 Capillary Dropper</li>
+                    <li>Buffer Solution</li>
+                    <li>Easy-to-follow Instructions</li>
+                </ul>
+            </div>
+        </div>
     </section>
 
+    <!-- Final CTA -->
+    <div class="container" style="margin-top: 2rem;">
+        <h2>Take Control of Your Health</h2>
+        <p>Know your Vitamin D status in minutes with a trusted at-home rapid test.</p>
+        <a href="https://rapidte.st/products/vitamin-d" target="_blank">
+            <button>Order a Test</button>
+        </a>
+    </div>
+
+    <!-- Footer -->
     <footer class="site-footer">
         <p>&copy; 2025 Abundant Science. All rights reserved.</p>
         <p><a href="mailto:contact@abundant.science">Contact Us</a></p>
