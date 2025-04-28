@@ -62,6 +62,7 @@ nav .nav-links a:hover {
     margin: 2rem auto;
     padding: 2rem 1rem;
     text-align: center;
+
 }
 
 
@@ -315,4 +316,77 @@ select {
 .unavailable {
     color: #999;
     font-weight: 600;
+}
+
+/* === Additional Minor Styles for Sales Pages === */
+
+/* Make <ul> lists inside sections cleaner and aligned center */
+.biomarker-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0 0 0;
+    text-align: center;
+}
+
+.biomarker-section ul li {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+/* Center and slightly larger Buy Now button */
+.container a button {
+    background-color: black;
+    color: white;
+    font-weight: bold;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.container a button:hover {
+    background-color: #333;
+}
+
+/* === Feature Section Cards === */
+
+.features-section {
+    max-width: 700px;
+    margin: 3rem auto;
+    padding: 0 1.5rem;
+    text-align: left;
+}
+
+.section-card {
+    background-color: white;
+    padding: 1.5rem 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+    text-align: left;
+    /* Right-align bullet points */
+    font-size: 1rem;
+    color: #333;
+}
+
+/* === List inside Section Cards === */
+.card-list {
+    list-style: none;
+    padding: 1rem;
+    margin: 1rem 0 0 0;
+}
+
+.card-list li {
+    margin-bottom: 1rem;
+}
+
+/* === Card Grid to place two cards side-by-side === */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    max-width: 900px;
+    margin: 2rem auto;
 }
