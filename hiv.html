@@ -34,125 +34,140 @@
 
     <!-- Hero / Form Section -->
     <div class="container">
-        <img src="HIV-01.jpg" alt="Free HIV Test Promotion"
-            style="width: 100%; max-width: 600px; margin: 1rem 0; border-radius: 8px;" />
+        <img src="hiv-image.jpg" alt="Free HIV Test"
+            style="width: 50%; max-width: 600px; margin: 1rem 0; border-radius: 8px;" />
 
-        <h1>Free HIV Testing<br>
+        <p style="color: #666">
 
-            Sign Up for free HIV Tests in Canada <em>without</em> the lab.
-        </h1>
-
-        <br>
-
-        <p>
-            Sign up and we'll email you the details of where and how to get your free HIV rapid test in Canada.
+        <p style="color: #666; text-align: center;">
+            Provide your email to get access to rapid tests and resources for HIV testing, PrEP, STI screening, and
+            other key health indicators.
         </p>
 
-        <form id="waitlist-form">
+
+        <form id=" waitlist-form">
             <input type="email" id="email" placeholder="Email" required />
-            <button type="submit">Get Free Test</button>
+            <button type="submit">Get Your Test</button>
         </form>
 
 
         <div id="message"></div>
     </div>
 
-    <!-- Supabase Script -->
-    <script>
-        window.addEventListener("DOMContentLoaded", function () {
-            const SUPABASE_URL = "https://jicytgdlbevccejowlnf.supabase.co";
-            const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImppY3l0Z2RsYmV2Y2Nlam93bG5mIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDUzNDQzNTYsImV4cCI6MjA2MDkyMDM1Nn0.DRfZefUPOLjhdxYudhvQKGePr6ex-Xf3JBkedbF7_OY";
-
-            const client = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-
-            document.getElementById("waitlist-form").addEventListener("submit", async function (e) {
-                e.preventDefault();
-
-                const email = document.getElementById("email").value.trim();
-                const msg = document.getElementById("message");
-                msg.textContent = "";
-                msg.className = "";
-
-                if (!email || !email.includes("@")) {
-                    msg.textContent = "Please enter a valid email.";
-                    msg.className = "error";
-                    return;
-                }
-
-                try {
-                    console.log("📨 Submitting:", email);
-                    const { data, error } = await client
-                        .from("waitlist")
-                        .insert([{ email, source_page: "HIV Test" }]);
-
-                    console.log("✅ Response:", data, error);
-
-                    if (error) {
-                        msg.textContent = "❌ Error: " + error.message;
-                        msg.className = "error";
-                    } else {
-                        msg.textContent = "✅ You're on the list!";
-                        msg.className = "success";
-                        document.getElementById("waitlist-form").reset();
-                    }
-                } catch (err) {
-                    console.error("❗ Unexpected error:", err);
-                    msg.textContent = "❌ Something went wrong.";
-                    msg.className = "error";
-                }
-            });
-        });
-    </script>
 
     <section class="biomarker-section">
-        <p>
+        <p style="text-align: left;">
+            The INSTI HIV Self Test was approved for use in Canada on Nov. 3, 2020, in part thanks to research done by
+            the same team behind I’m Ready to Know. The overall accuracy is rated at over 99%, meaning that there is
+            over a 99% probability that either a positive or a negative result will be correct. If you become part of
+            the I’m Ready program you can get up to three free INSTI HIV Self Test Kits.
             <br>
-            About Us – We provide rapid tests directly to customers and partner with the governemnt, organizations and
-            other healthcare providers
-            to make testing more accessible.
-            <br><br>
             <br>
 
-        <!-- <section class="resources-section"
+        </p>
+
+        <h4 style="text-align: left;">How to Get a Free Test from I'm Ready</h4>
+
+        <p style="text-align: left;">
+            1. Donwload the I'm Ready Donwload App: <a href="https://apps.apple.com/ca/app/im-ready-test/id1547497367"
+                target="_blank" rel="noopener noreferrer"> Here</a>.
+            Once downloaded, complete the eligibility questions, create a profile and answer a short pre-test survey
+            <br>
+            <br>
+            2. Choose to have up to three self-test kits delivered to your home or another address, or opt to pick up a
+            single kit at any one of our pickup locations.
+            <br>
+            <br>
+            3. Once the self-test kit arrives, open the I’m Ready, Test app and follow the test kit instructions.
+            <br>
+            <br>
+            4. When you’re done the test, record your result in the app anonymously and continue to
+            access more information on treating or preventing HIV.
+        </p>
+        <br>
+
+        <section class=" resources-section"
             style="padding: 2rem; background-color: #f9f9f9; border-top: 1px solid #ddd;">
-            <h2 style="font-size: 1.75rem; margin-bottom: 1rem;">Resources</h2>
-            <ul style="list-style: none; padding: 0; line-height: 1.6;">
+            <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Additional Resources</h3>
+            <ul style="list-style: none; text-align: left; padding: 0; line-height: 1.6;">
                 <li>
-                    📦 <strong>What’s in the Health Box?</strong> – Learn more about what comes in your rapid test kit
-                    and how to use it.
-                    <a href="https://rapidte.st/pages/health-box" target="_blank">View Health Box</a>
+                    <strong>
+                        <a href="https://www.ourhealthbox.ca/" target="_blank">Our Health Box</a> </strong> – National
+                    Community initaitive for HIV and harm reduction
+                </li>
+
+                <li>
+                    <strong>
+                        <a href="https://www.readytoknow.ca" target="_blank">Ready to Know</a> </strong> – Canadian
+                    program that offers low-barrier options to HIV self-testing and connections to care
+
                 </li>
                 <li>
-                    🧪 <strong>How Rapid Testing Works</strong> – Understand how lateral flow tests work and how
-                    accurate they are.
-                    <a href="https://rapidte.st/pages/how-it-works" target="_blank">Read More</a>
+                    <strong> <a href="https://hivtestingontario.ca/self-testing/" target="_blank">HIV Testing
+                            Ontario</a> </strong> – More Self Testing Information
                 </li>
                 <li>
-                    📍 <strong>Where to Get Tested</strong> – Locations, events, or organizations offering HIV testing
-                    support.
-                    <a href="https://rapidte.st/pages/locations" target="_blank">Find Locations</a>
-                </li>
-                <li>
-                    📚 <strong>HIV Testing in Canada</strong> – Government resources and how you’re supported.
-                    <a href="https://www.catie.ca/hiv-testing" target="_blank">View on CATIE.ca</a>
+                    <strong>
+                        <a href="https://www.catie.ca/essentials/hiv-basics" target="_blank">CATIE</a>
+                    </strong> – HIV Basics in Canada
                 </li>
             </ul>
-        </section> -->
+        </section>
 
-        <!-- <br>Join our Discord community <a href="https://discord.gg/abundant.science" target="_blank"
-                rel="noopener noreferrer">here</a> -->
-        <br>
-        <br>Follow Us on <a href="https://www.tiktok.com/@abundant.science" target="_blank"
-            rel="noopener noreferrer">TikTok</a>
-        <br>Our <a href="https://rapidte.st" target="_blank" rel="noopener noreferrer">Rapid Tests</a>
-        </p>
-    </section>
-
-    <footer class="site-footer">
-        <p>&copy; 2025 Abundant Science. All rights reserved.</p>
-        <p><a href="mailto:contact@abundant.science">Contact Us</a></p>
-    </footer>
+        <footer class="site-footer">
+            <p>&copy; 2025 Abundant Science. All rights reserved.</p>
+            <p><a href="mailto:contact@abundant.science">Contact Us</a></p>
+        </footer>
 
 </body>
+
+
+
+<!-- Supabase Script -->
+<script>
+    window.addEventListener("DOMContentLoaded", function () {
+        const SUPABASE_URL = "https://jicytgdlbevccejowlnf.supabase.co";
+        const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImppY3l0Z2RsYmV2Y2Nlam93bG5mIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDUzNDQzNTYsImV4cCI6MjA2MDkyMDM1Nn0.DRfZefUPOLjhdxYudhvQKGePr6ex-Xf3JBkedbF7_OY";
+
+        const client = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+        document.getElementById("waitlist-form").addEventListener("submit", async function (e) {
+            e.preventDefault();
+
+            const email = document.getElementById("email").value.trim();
+            const msg = document.getElementById("message");
+            msg.textContent = "";
+            msg.className = "";
+
+            if (!email || !email.includes("@")) {
+                msg.textContent = "Please enter a valid email.";
+                msg.className = "error";
+                return;
+            }
+
+            try {
+                console.log("📨 Submitting:", email);
+                const { data, error } = await client
+                    .from("waitlist")
+                    .insert([{ email, source_page: "HIV Test" }]);
+
+                console.log("✅ Response:", data, error);
+
+                if (error) {
+                    msg.textContent = "❌ Error: " + error.message;
+                    msg.className = "error";
+                } else {
+                    msg.textContent = "✅ You're on the list!";
+                    msg.className = "success";
+                    document.getElementById("waitlist-form").reset();
+                }
+            } catch (err) {
+                console.error("❗ Unexpected error:", err);
+                msg.textContent = "❌ Something went wrong.";
+                msg.className = "error";
+            }
+        });
+    });
+</script>
 
 </html>
