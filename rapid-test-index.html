@@ -45,8 +45,10 @@
 
     <h1>Rapid Test Index 🔍</h1>
     <p>Search for a biomarker, condition, or health topic:</p>
+    <!-- 
+    <div class="field-group"> -->
+    <form id="search-fields">
 
-    <div class="field-group">
         <input type="text" id="search" class="styled-field" placeholder="Biomarker, condition, topic etc." />
         <select id="categoryFilter" class="styled-field">
             <option value="">Filter by Health Category</option>
@@ -71,52 +73,51 @@
             </select> -->
 
 
-    </div>
 
-    <div id="results"></div>
-</div>
+        <div id="results">
+        </div>
 
 
-<!-- JS Search Logic -->
-<script>
-    const client = window.supabase.createClient(
-        "https://jicytgdlbevccejowlnf.supabase.co",
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImppY3l0Z2RsYmV2Y2Nlam93bG5mIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDUzNDQzNTYsImV4cCI6MjA2MDkyMDM1Nn0.DRfZefUPOLjhdxYudhvQKGePr6ex-Xf3JBkedbF7_OY"
-    );
+        <!-- JS Search Logic -->
+        <script>
+            const client = window.supabase.createClient(
+                "https://jicytgdlbevccejowlnf.supabase.co",
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImppY3l0Z2RsYmV2Y2Nlam93bG5mIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDUzNDQzNTYsImV4cCI6MjA2MDkyMDM1Nn0.DRfZefUPOLjhdxYudhvQKGePr6ex-Xf3JBkedbF7_OY"
+            );
 
-    const searchInput = document.getElementById("search");
-    const categoryFilter = document.getElementById("categoryFilter");
-    const resultsDiv = document.getElementById("results");
+            const searchInput = document.getElementById("search");
+            const categoryFilter = document.getElementById("categoryFilter");
+            const resultsDiv = document.getElementById("results");
 
-    async function runSearch() {
-        const query = searchInput.value.trim().toLowerCase();
-        const selectedCategory = categoryFilter.value;
+            async function runSearch() {
+                const query = searchInput.value.trim().toLowerCase();
+                const selectedCategory = categoryFilter.value;
 
-        let supabaseQuery = client.from("tests").select("*");
+                let supabaseQuery = client.from("tests").select("*");
 
-        if (query && selectedCategory) {
-            supabaseQuery = supabaseQuery
-                .ilike("name", `%${query}%`)
-                .eq("category", selectedCategory);
-        } else if (query) {
-            supabaseQuery = supabaseQuery.ilike("name", `%${query}%`);
-        } else if (selectedCategory) {
-            supabaseQuery = supabaseQuery.eq("category", selectedCategory);
-        }
+                if (query && selectedCategory) {
+                    supabaseQuery = supabaseQuery
+                        .ilike("name", `%${query}%`)
+                        .eq("category", selectedCategory);
+                } else if (query) {
+                    supabaseQuery = supabaseQuery.ilike("name", `%${query}%`);
+                } else if (selectedCategory) {
+                    supabaseQuery = supabaseQuery.eq("category", selectedCategory);
+                }
 
-        const { data, error } = await supabaseQuery;
+                const { data, error } = await supabaseQuery;
 
-        if (error) {
-            resultsDiv.innerHTML = "❌ Error loading results.";
-            return;
-        }
+                if (error) {
+                    resultsDiv.innerHTML = "❌ Error loading results.";
+                    return;
+                }
 
-        if (!data || data.length === 0) {
-            resultsDiv.innerHTML = "No results found.";
-            return;
-        }
+                if (!data || data.length === 0) {
+                    resultsDiv.innerHTML = "No results found.";
+                    return;
+                }
 
-        resultsDiv.innerHTML = data.map(row => `
+                resultsDiv.innerHTML = data.map(row => `
                 <div class="result">
                     <h3>${row.name}</h3>
                     <p>${row.description}</p>
@@ -129,18 +130,18 @@
                     </div>
                 </div>
             `).join('');
-    }
+            }
 
-    searchInput.addEventListener("input", runSearch);
-    categoryFilter.addEventListener("change", runSearch);
-</script>
+            searchInput.addEventListener("input", runSearch);
+            categoryFilter.addEventListener("change", runSearch);
+        </script>
 
-<!-- Footer -->
-<footer class="site-footer">
-    <p>&copy; 2025 Abundant Science. All rights reserved.</p>
-    <p><a href="mailto:contact@abundant.science">Contact Us</a></p>
-</footer>
+        <!-- Footer -->
+        <footer class="site-footer">
+            <p>&copy; 2025 Abundant Science. All rights reserved.</p>
+            <p><a href="mailto:contact@abundant.science">Contact Us</a></p>
+        </footer>
 
-</body>
+        </body>
 
 </html>
