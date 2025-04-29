@@ -131,11 +131,14 @@ body {
     padding-top: 70px;
 }
 
-/* Global styles for input, button, select */
-input,
-button,
 
-/* Separate clean styling for select */
+
+/* ===== COMPONENTS ===== */
+
+/* === Rapid Test Form === */
+/* Global select, input, form styles */
+
+
 select {
     width: 300px;
     padding: 0.75rem;
@@ -155,9 +158,6 @@ select {
     background-size: 1rem;
 }
 
-/* ===== COMPONENTS ===== */
-
-/* === Rapid Test Form === */
 form {
     display: flex;
     flex-direction: column;
