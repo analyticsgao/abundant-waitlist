@@ -47,10 +47,10 @@
     <p>Search for a biomarker, condition, or health topic:</p>
     <!-- 
     <div class="field-group"> -->
-    <form id="search-fields">
+    <form id="rapid-index-container">
 
-        <input type="text" id="search" class="styled-field" placeholder="Biomarker, condition, topic etc." />
-        <select id="categoryFilter" class="styled-field">
+        <input type="text" id="search" class="input-field-claude" placeholder="Biomarker, condition, topic etc." />
+        <select id="categoryFilter" class="input-field">
             <option value="">Filter by Health Category</option>
             <option value="General Wellness">General Wellness</option>
             <option value="Fertility">Fertility</option>
@@ -60,7 +60,7 @@
             <option value="Infections">Infections</option>
             <option value="Drug Screening">Drug Screening</option>
         </select>
-        <!-- <select id="categoryFilter" class="styled-field">
+        <!-- <select id="categoryFilter" class="input-field">
                 <option value="">Test Type</option>
                 <option value="Hormone">Hormone</option>
                 <option value="Vitamin">Vitamin</option>
@@ -74,8 +74,7 @@
 
 
 
-        <div id="results">
-        </div>
+        <div id="results"> </div>
 
 
         <!-- JS Search Logic -->
@@ -117,19 +116,53 @@
                     return;
                 }
 
-                resultsDiv.innerHTML = data.map(row => `
-                <div class="result">
-                    <h3>${row.name}</h3>
-                    <p>${row.description}</p>
-                    <div class="card-footer">
-                        ${row.url ? `<a href="${row.url}" target="_blank" class="learn-more-button">Learn more</a>` : ''}
-                        <p class="${row.available ? 'available' : 'unavailable'}">
-                        ${row.available ? '✅ Available now' : '🔒 Coming soon'}
+                /*===== new code for result card =====*/
 
-                    </p>
-                    </div>
-                </div>
-            `).join('');
+
+                resultsDiv.innerHTML = data.map(row => `
+    <div class="result-card">
+        <!-- Top: Name -->
+        <h3 class="result-title">${row.name}</h3>
+
+        <!-- Middle Section -->
+        <div class="result-middle">
+            <div class="description-section">
+                <p class="light">${row.description}</p>
+            </div>
+            <div class="image-section">
+                ${row.card_image ? `<img src="${row.card_image}" alt="${row.name}" class="card-image" style="max-width: 100px; height: auto; border-radius: 3px;">` : ''}
+            </div>
+            <div class="icons-section">
+                ${row.sample_icons ? `<img src="${row.sample_icons}" alt="Sample Icon" class="icon-image" style="max-width: 40px; height: auto;">` : ''}
+                ${row.system_icons ? `<img src="${row.system_icons}" alt="System Icon" class="icon-image" style="max-width: 40px; height: auto;">` : ''}
+            </div>
+        </div>
+
+        <!-- Footer Section -->
+        <div class="result-footer">
+            ${row.url ? `<a href="${row.url}" target="_blank" class="learn-more-button">Learn more</a>` : ''}
+            <p class="${row.available ? 'available' : 'unavailable'}">
+                ${row.available ? '✅ Available now' : '🔒 Coming soon'}
+            </p>
+        </div>
+    </div>
+`).join('');
+
+
+                //     resultsDiv.innerHTML = data.map(row => `
+                //     <div class="result">
+                //         <h3>${row.name}</h3>
+                //         <p>${row.description}</p>
+                //     ${row.card_image ? `<img src="${row.card_image}" alt="${row.name}" class="card-image" style="max-width: 10%; height: auto; border-radius: 8px;">` : ''}
+                //         <div class="resu-footer">
+                //             ${row.url ? `<a href="${row.url}" target="_blank" class="learn-more-button">Learn more</a>` : ''}
+                //             <p class="${row.available ? 'available' : 'unavailable'}">
+                //             ${row.available ? '✅ Available now' : '🔒 Coming soon'}
+
+                //         </p>
+                //         </div>
+                //     </div>
+                // `).join('');
             }
 
             searchInput.addEventListener("input", runSearch);
