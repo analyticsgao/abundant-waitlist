@@ -4,21 +4,15 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="refresh" content="0; url=https://www.abundantscience/hcg.html" />
+    <title>Rapid Test – Abundant Science</title>
 
-    <title>hCG (Human Chorionic Gonadotropin) Rapid Test – Abundant Science</title>
-
-    <!-- Load Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
-
     <link rel="stylesheet" href="styles.css" />
-
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.5/dist/umd/supabase.min.js"></script>
 </head>
 
 <body>
 
-    <!-- Navigation Bar -->
     <nav>
         <div class="logo-container">
             <a href="index.html"
@@ -32,31 +26,75 @@
         </div>
     </nav>
 
-    <!-- Hero / Form Section -->
     <div class="container">
-        <h1>Get Early Access to At-Home hCG (Human Chorionic Gonadotropin) Testing<br></h1>
-        <br>
-        <p>
-            Join the waitlist for one of the first at-home hCG (Human Chorionic Gonadotropin) Test Kits available in
-            Canada.<br>
-        </p>
+        <h1 id="page-title">Loading...</h1>
+    </div>
+
+    <section class="biomarker-section">
+        <h2 id="biomarker-name">Loading Test Name...</h2>
+        <p id="biomarker-description">Loading description...</p>
+        <p><strong>Normal Range:</strong> <span id="biomarker-range">Loading...</span></p>
+        <!-- <p><strong>Categories:</strong> <span id="biomarker-categories">Loading...</span></p> -->
+
+        <p><strong>Who Should Test:</strong> <span id="biomarker-who">Loading...</span></p>
+
+        <br><br>
 
         <form id="waitlist-form">
             <input type="email" id="email" placeholder="Email" required />
-            <button type="submit">Join Waitlist</button>
+            <button type="submit">Join Community</button>
         </form>
 
         <div id="message"></div>
-    </div>
+    </section>
 
-    <!-- Supabase Script -->
+
     <script>
-        window.addEventListener("DOMContentLoaded", function () {
+        window.addEventListener("DOMContentLoaded", async function () {
             const SUPABASE_URL = "https://jicytgdlbevccejowlnf.supabase.co";
             const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImppY3l0Z2RsYmV2Y2Nlam93bG5mIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDUzNDQzNTYsImV4cCI6MjA2MDkyMDM1Nn0.DRfZefUPOLjhdxYudhvQKGePr6ex-Xf3JBkedbF7_OY";
-
             const client = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
+            const biomarkerNickname = "HCG"; // or "FSH", etc.
+
+            // Set page title
+            document.title = `${biomarkerNickname} Rapid Test – Abundant Science`;
+            document.getElementById("page-title").textContent = `Learn More About ${biomarkerNickname} Rapid Tests`;
+
+            // Get test info (name + description)
+            const { data: testData, error: testError } = await client
+                .from("tests")
+                .select("name, description")
+                .eq("nickname", biomarkerNickname)
+                .maybeSingle();
+
+            if (testError || !testData) {
+                console.error("❌ Error loading test:", testError);
+                document.getElementById("biomarker-name").textContent = biomarkerNickname;
+                document.getElementById("biomarker-description").textContent = "No description found.";
+                document.getElementById("biomarker-categories").textContent =
+                    Array.isArray(testData.category_tags) ? testData.category_tags.join(", ") : testData.category_tags || "N/A";
+
+            } else {
+                document.getElementById("biomarker-name").textContent = testData.name || biomarkerNickname;
+                document.getElementById("biomarker-description").textContent = testData.description || "N/A";
+            }
+
+            // Get biomarker detail (who_should_test)
+            const { data: bioData, error: bioError } = await client
+                .from("biomarker_details")
+                .select("who_should_test", "normal_ranges")
+                .eq("nickname", biomarkerNickname)
+                .maybeSingle();
+
+            if (bioError) {
+                console.error("❌ Error loading biomarker details:", bioError);
+            }
+
+            document.getElementById("biomarker-who").textContent = bioData?.who_should_test || "—";
+            document.getElementById("biomarker-range").textContent = bioData?.normal_ranges || "N/A";
+
+            // Waitlist form submission
             document.getElementById("waitlist-form").addEventListener("submit", async function (e) {
                 e.preventDefault();
 
@@ -72,12 +110,9 @@
                 }
 
                 try {
-                    console.log("📨 Submitting:", email);
                     const { data, error } = await client
                         .from("waitlist")
-                        .insert([{ email, source_page: "hCG Test" }]);
-
-                    console.log("✅ Response:", data, error);
+                        .insert([{ email, source_page: biomarkerNickname }]);
 
                     if (error) {
                         msg.textContent = "❌ Error: " + error.message;
@@ -96,17 +131,8 @@
         });
     </script>
 
-    <section class="biomarker-section">
-        <p>
-            <br>
-            About Us – Abundant Science provides rapid tests directly to customers and partners with governments,
-            organizations, and healthcare providers to make proactive health testing more accessible across Canada.
-            <br><br>
-            <br>Follow Us on <a href="https://www.tiktok.com/@abundant.science" target="_blank"
-                rel="noopener noreferrer">TikTok</a>
-            <br>Explore Our <a href="https://rapidte.st" target="_blank" rel="noopener noreferrer">Rapid Tests</a>
-        </p>
-    </section>
+
+
 
     <footer class="site-footer">
         <p>&copy; 2025 Abundant Science. All rights reserved.</p>
