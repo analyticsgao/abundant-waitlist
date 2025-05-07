@@ -43,22 +43,21 @@
             <div style="margin: 1rem 5rem; text-align: justify; display: flex; flex-direction: column; align-items:
             flex-start; color: #333;">
                 <strong>You deserve to know.</strong>
-                <p>
-                    11% of Canadians with an HIV infection — about 7,000 people — don’t know their status. Could you be
-                    one of
-                    them?
 
-                    Free Health Canada-approved, made-in-Canada HIV self rapid tests are available now, mailed to you or
-                    picked
-                    up in your community. 99% accurate. Results in less than 10 minutes.
+                11% of Canadians with an HIV infection — about 7,000 people — don’t know their status. Could you be
+                one of
+                them?
 
-                    At Abundant Science, we’re building rapid testing as a category in Canada. Sign up below, and we’ll
-                    email
-                    you a simple guide to getting your free rapid tests.
-                    <br>
-                    <br>
+                Free Health Canada-approved, made-in-Canada HIV self rapid tests are available now, mailed to you or
+                picked
+                up in your community. 99% accurate. Results in less than 10 minutes.
 
-                </p>
+                At Abundant Science, we’re building rapid testing as a category in Canada. Sign up below, and we’ll
+                email
+                you a simple guide to getting your free rapid tests.
+                <br>
+                <br>
+
             </div>
 
             <input type="email" id="email" placeholder="Email" required />
@@ -72,7 +71,7 @@
                 <label><input type="checkbox" class="campaign-checkbox" value="hiv-prep-rapid-test" /> I want rapid
                     testing for HIV PrEP</label>
                 <label>
-                    <input type="checkbox" class="campaign-checkbox" value="rapid-test-your-drugs" data-extra="pnp" />
+                    <input type="checkbox" class="campaign-checkbox" value="rapid-test-your-drugs" />
                     I PnP and want to test my drugs
                 </label>
 
@@ -169,16 +168,16 @@
             const email = document.getElementById("email").value.trim();
             const msg = document.getElementById("message");
             const checkboxes = document.querySelectorAll(".campaign-checkbox:checked");
-            const discreet = document.getElementById("discreet-checkbox").checked; // true or false
+            const discreet = document.getElementById("discreet-checkbox").checked;
 
-            let campaign = [];
+            let campaign = ["free-hiv-rapid-test"]; // always include this tag
+
             checkboxes.forEach(cb => {
                 campaign.push(cb.value);
                 if (cb.dataset.extra) {
                     campaign.push(cb.dataset.extra);
                 }
             });
-
 
             msg.textContent = "";
             msg.className = "";
@@ -213,9 +212,9 @@
                 msg.className = "error";
             }
         });
-
     });
 </script>
+
 
 
 
